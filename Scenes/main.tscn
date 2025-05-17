@@ -1,0 +1,91 @@
+[gd_scene load_steps=9 format=3 uid="uid://qet7r2i1b87g"]
+
+[ext_resource type="Script" uid="uid://ca3ic4hwnvlwx" path="res://Script/camera.gd" id="1_jjgbg"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1bvp3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bo1nx"]
+size = Vector3(1.98462, 0.001, 2.01074)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bo1nx"]
+sky_top_color = Color(0.0724182, 0.41131, 0.882813, 1)
+sky_horizon_color = Color(0.511719, 0.190145, 0.115936, 1)
+ground_horizon_color = Color(0.704902, 0.603882, 0.796875, 1)
+
+[sub_resource type="Sky" id="Sky_8gbba"]
+sky_material = SubResource("ProceduralSkyMaterial_bo1nx")
+
+[sub_resource type="Environment" id="Environment_jjvhh"]
+background_mode = 2
+sky = SubResource("Sky_8gbba")
+ambient_light_source = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kry3j"]
+albedo_color = Color(0.800781, 0.14389, 0.14389, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7u77a"]
+material = SubResource("StandardMaterial3D_kry3j")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(393.625, 0, 0, 0, 1, 0, 0, 0, 368.5, 0, 0, 0)
+layers = 3
+mesh = SubResource("PlaneMesh_1bvp3")
+
+[node name="terrain" type="StaticBody3D" parent="MeshInstance3D"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/terrain"]
+shape = SubResource("BoxShape3D_bo1nx")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.855174, 0.51834, 0, -0.51834, 0.855174, 0, 11.7564, 19.5044)
+environment = SubResource("Environment_jjvhh")
+script = ExtResource("1_jjgbg")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.4669, 0, -26.1211)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2788, 0)
+mesh = SubResource("BoxMesh_7u77a")
+
+[node name="Node3D2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.12593, 0, -11.3514)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2788, 0)
+mesh = SubResource("BoxMesh_7u77a")
+
+[node name="Node3D3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1146, 0, -26.1443)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2788, 0)
+mesh = SubResource("BoxMesh_7u77a")
+
+[node name="Node3D4" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.5636, 0, -7.61842)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2788, 0)
+mesh = SubResource("BoxMesh_7u77a")
+
+[node name="Node3D5" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.92257, 0, 9.64412)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2788, 0)
+mesh = SubResource("BoxMesh_7u77a")
+
+[node name="Node3D6" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.44407, 0, -5.12998)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2788, 0)
+mesh = SubResource("BoxMesh_7u77a")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.796688, 0.604391, 0, -0.604391, 0.796688, 0, 11.4099, 0)
