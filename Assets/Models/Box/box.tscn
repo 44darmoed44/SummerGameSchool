@@ -1,4 +1,6 @@
-[gd_scene load_steps=9 format=4 uid="uid://4pfearyfmg7e"]
+[gd_scene load_steps=10 format=4 uid="uid://4pfearyfmg7e"]
+
+[ext_resource type="Script" uid="uid://bjt5tqg31lkxu" path="res://Script/box.gd" id="1_ahcth"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tfcth"]
 resource_name = "Material"
@@ -131,6 +133,8 @@ size = Vector3(5.58691, 5.7868, 5.89795)
 size = Vector3(4.90479, 5.70419, 6.40601)
 
 [node name="Box" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_ahcth")
 
 [node name="Cube" type="MeshInstance3D" parent="."]
 transform = Transform3D(3.84, 0, 0, 0, 0.128, 0, 0, 0, 9.152, 0, 0, 0)
@@ -144,7 +148,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50132, 0.00170851)
 shape = SubResource("BoxShape3D_oci47")
 
 [node name="Area3D" type="Area3D" parent="."]
+collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0178223, 1.65648, 0.0653076)
 shape = SubResource("BoxShape3D_ahcth")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

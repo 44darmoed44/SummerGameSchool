@@ -1,4 +1,6 @@
-[gd_scene load_steps=15 format=4 uid="uid://cyksvcrs8lm00"]
+[gd_scene load_steps=18 format=4 uid="uid://cyksvcrs8lm00"]
+
+[ext_resource type="Script" uid="uid://cejl27x1thxsb" path="res://Script/conveyor.gd" id="1_uquso"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qsjs8"]
 resource_name = "Conveyor2Mtl"
@@ -158,14 +160,20 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_v7qbh")
 
+[sub_resource type="BoxMesh" id="BoxMesh_lwe5v"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_lwe5v"]
 size = Vector3(4.93359, 0.529297, 11.408)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uquso"]
-size = Vector3(4.55382, 1, 11.5071)
+size = Vector3(4.55382, 1, 11.3834)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uw27x"]
+size = Vector3(5.62103, 2.62329, 11.248)
 
 [node name="Conveyor" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_uquso")
 
 [node name="Object_2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 36, -1, -7)
@@ -187,6 +195,36 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 36, -1
 mesh = SubResource("ArrayMesh_ym64e")
 skeleton = NodePath("")
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.344175, 0, 1.20959, 0, 0.297029, 0, -0.334579, 0, 1.24428, 0.367142, 0.127373, 0.104534)
+mesh = SubResource("BoxMesh_lwe5v")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.330489, 0, -1.25848, 0, 0.297029, 0, 0.348105, 0, 1.1948, -0.549656, 0.127373, 0.0863481)
+mesh = SubResource("BoxMesh_lwe5v")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.344175, 0, 1.20959, 0, 0.297029, 0, -0.334579, 0, 1.24428, 0.367142, 0.127373, -2.89547)
+mesh = SubResource("BoxMesh_lwe5v")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.330489, 0, -1.25848, 0, 0.297029, 0, 0.348105, 0, 1.1948, -0.549656, 0.127373, -2.91365)
+mesh = SubResource("BoxMesh_lwe5v")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.344175, 0, 1.20959, 0, 0.297029, 0, -0.334579, 0, 1.24428, 0.367142, 0.127373, 3.10453)
+mesh = SubResource("BoxMesh_lwe5v")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.330489, 0, -1.25848, 0, 0.297029, 0, 0.348105, 0, 1.1948, -0.549656, 0.127373, 3.08635)
+mesh = SubResource("BoxMesh_lwe5v")
+skeleton = NodePath("")
+
 [node name="building" type="StaticBody3D" parent="."]
 collision_mask = 3
 
@@ -196,5 +234,27 @@ shape = SubResource("BoxShape3D_lwe5v")
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.152565, 0, 0.0477295)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.152565, 0, 0.0743074)
 shape = SubResource("BoxShape3D_uquso")
+
+[node name="ItemTransit" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.827373)
+collision_mask = 5
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ItemTransit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16806, 0.811646, 1.56402)
+shape = SubResource("BoxShape3D_uw27x")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.025
+autostart = true
+
+[node name="ConveyorItems" type="Node3D" parent="."]
+
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
+[connection signal="area_entered" from="ItemTransit" to="." method="_on_item_transit_area_entered"]
+[connection signal="area_exited" from="ItemTransit" to="." method="_on_item_transit_area_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

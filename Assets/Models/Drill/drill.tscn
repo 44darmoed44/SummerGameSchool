@@ -1,4 +1,6 @@
-[gd_scene load_steps=17 format=4 uid="uid://x30ccpbdd0w6"]
+[gd_scene load_steps=18 format=4 uid="uid://x30ccpbdd0w6"]
+
+[ext_resource type="Script" uid="uid://eagakjt26771" path="res://Script/drill.gd" id="1_1y6tb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ox31r"]
 resource_name = "Material.004"
@@ -207,6 +209,7 @@ shadow_mesh = SubResource("ArrayMesh_pjy8k")
 [sub_resource type="Animation" id="Animation_25anj"]
 resource_name = "idle "
 length = 10.4167
+loop_mode = 1
 tracks/0/type = "position_3d"
 tracks/0/imported = true
 tracks/0/enabled = true
@@ -245,10 +248,11 @@ _data = {
 size = Vector3(5.94043, 9.49933, 5.96655)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1y6tb"]
-size = Vector3(6.11328, 9.75885, 6.0957)
+size = Vector3(6.11328, 10.043, 6.0957)
 
 [node name="Drill" type="Node3D"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+script = ExtResource("1_1y6tb")
 
 [node name="drill-building" type="MeshInstance3D" parent="."]
 transform = Transform3D(3, 0, 0, 0, 0.6, 0, 0, 0, 3, 0, 0, 0)
@@ -277,7 +281,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.24966, 0)
 shape = SubResource("BoxShape3D_tlam4")
 
 [node name="Area3D" type="Area3D" parent="."]
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.37943, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.23736, 0)
 shape = SubResource("BoxShape3D_1y6tb")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0

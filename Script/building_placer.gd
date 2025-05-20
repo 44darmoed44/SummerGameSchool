@@ -53,6 +53,17 @@ func _input(event):
 					return
 			build = building_packed.instantiate()
 			build.set_script(load("res://Script/build_viewer.gd"))
+			
+			if build.name == "Drill": 
+				build.set_script(load("res://Script/drill.gd"))
+			if build.name == "Manipulator":
+				build.set_script(load("res://Script/manipulator.gd"))
+				build.items_node = $"../Items"
+			if build.name == "Box":
+				build.set_script(load("res://Script/box.gd"))
+			if build.name == "Conveyor":
+				build.set_script(load("res://Script/conveyor.gd"))
+			
 			building_placer.add_child(build)
 			is_building = true
 			
@@ -72,6 +83,7 @@ func _input(event):
 			is_building = false
 		elif !is_building:
 			if event.button_index == MOUSE_BUTTON_RIGHT and !raycasted_result.is_empty():
+				if raycasted_result["collider"] == null: return
 				raycasted_result["collider"].get_parent().queue_free()
 			
 
@@ -82,7 +94,6 @@ func place_obj():
 	var ray_from: Vector3 = camera.project_ray_origin(mouse_pos)
 	var ray_to: Vector3 = ray_from + camera.project_ray_normal(mouse_pos) * 1000
 	ray_param = PhysicsRayQueryParameters3D.create(ray_from, ray_to)
-	raycasted_result
 
 
 func snap_to_grid(pos: Vector3) -> Vector3:
