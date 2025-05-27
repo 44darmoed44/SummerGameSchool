@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://qet7r2i1b87g"]
+[gd_scene load_steps=18 format=4 uid="uid://qet7r2i1b87g"]
 
 [ext_resource type="Script" uid="uid://ca3ic4hwnvlwx" path="res://Script/camera.gd" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://dpjxk4m2r2f4t" path="res://Script/building_placer.gd" id="2_bo1nx"]
@@ -24,6 +24,9 @@ sky_material = SubResource("PanoramaSkyMaterial_21xkr")
 [sub_resource type="Environment" id="Environment_344ge"]
 background_mode = 2
 sky = SubResource("Sky_6bp64")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bo1nx"]
+albedo_color = Color(0.578125, 0.578125, 0.578125, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1bvp3"]
 
@@ -96,6 +99,7 @@ environment = SubResource("Environment_344ge")
 
 [node name="Plane" type="MeshInstance3D" parent="."]
 transform = Transform3D(393.625, 0, 0, 0, 1, 0, 0, 0, 368.5, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_bo1nx")
 mesh = SubResource("PlaneMesh_1bvp3")
 
 [node name="terrain" type="StaticBody3D" parent="Plane"]

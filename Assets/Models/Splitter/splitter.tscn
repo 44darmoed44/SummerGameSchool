@@ -1,4 +1,6 @@
-[gd_scene load_steps=9 format=4 uid="uid://547wxj411jf3"]
+[gd_scene load_steps=14 format=4 uid="uid://547wxj411jf3"]
+
+[ext_resource type="Script" uid="uid://b33pojtsybug" path="res://Script/splitter.gd" id="1_n3y27"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjuwv"]
 resource_name = "Material.001"
@@ -132,7 +134,20 @@ size = Vector3(4.1748, 7.69714, 4.26382)
 [sub_resource type="BoxShape3D" id="BoxShape3D_n3y27"]
 size = Vector3(4.21448, 7.74093, 4.2556)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_gt7x3"]
+size = Vector3(2.45532, 5, 1.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_86c03"]
+albedo_color = Color(0.406199, 1, 0.432372, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n3y27"]
+material = SubResource("StandardMaterial3D_86c03")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i0ko4"]
+size = Vector3(1, 5, 1)
+
 [node name="Splitter" type="Node3D"]
+script = ExtResource("1_n3y27")
 
 [node name="Cube" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.8, 0, 0, 0, 0.36, 0, 0, 0, 1.8, 0, 0, 0)
@@ -151,3 +166,111 @@ shape = SubResource("BoxShape3D_8hm0l")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0108261, 3.07016, -0.0777206)
 shape = SubResource("BoxShape3D_n3y27")
+
+[node name="Input" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2)
+collision_mask = 5
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Input"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.25)
+shape = SubResource("BoxShape3D_gt7x3")
+
+[node name="StateZone" type="Node3D" parent="."]
+
+[node name="arrow" type="Node3D" parent="StateZone"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.065265, 2.78482, -3.7857)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StateZone/arrow"]
+transform = Transform3D(-0.344175, 0, -1.20959, 0, 0.297029, 0, 0.334579, 0, -1.24428, -0.549656, 0.127373, 0.0863485)
+mesh = SubResource("BoxMesh_n3y27")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="StateZone/arrow"]
+transform = Transform3D(-0.330489, 0, 1.25848, 0, 0.297029, 0, -0.348105, 0, -1.1948, 0.367142, 0.127373, 0.104533)
+mesh = SubResource("BoxMesh_n3y27")
+skeleton = NodePath("")
+
+[node name="arrow2" type="Node3D" parent="StateZone"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.064805, 2.78482, 3.9857)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StateZone/arrow2"]
+transform = Transform3D(-0.344175, 0, -1.20959, 0, 0.297029, 0, 0.334579, 0, -1.24428, -0.549656, 0.127373, 0.0863485)
+mesh = SubResource("BoxMesh_n3y27")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="StateZone/arrow2"]
+transform = Transform3D(-0.330489, 0, 1.25848, 0, 0.297029, 0, -0.348105, 0, -1.1948, 0.367142, 0.127373, 0.104533)
+mesh = SubResource("BoxMesh_n3y27")
+skeleton = NodePath("")
+
+[node name="arrow3" type="Node3D" parent="StateZone"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.7648, 2.78482, -0.0143002)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StateZone/arrow3"]
+transform = Transform3D(-0.344175, 0, -1.20959, 0, 0.297029, 0, 0.334579, 0, -1.24428, -0.549656, 0.127373, 0.0863485)
+mesh = SubResource("BoxMesh_n3y27")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="StateZone/arrow3"]
+transform = Transform3D(-0.330489, 0, 1.25848, 0, 0.297029, 0, -0.348105, 0, -1.1948, 0.367142, 0.127373, 0.104533)
+mesh = SubResource("BoxMesh_n3y27")
+skeleton = NodePath("")
+
+[node name="arrow4" type="Node3D" parent="StateZone"]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 3.8352, 2.78482, -0.0143002)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StateZone/arrow4"]
+transform = Transform3D(-0.344175, 0, -1.20959, 0, 0.297029, 0, 0.334579, 0, -1.24428, -0.549656, 0.127373, 0.0863485)
+mesh = SubResource("BoxMesh_n3y27")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="StateZone/arrow4"]
+transform = Transform3D(-0.330489, 0, 1.25848, 0, 0.297029, 0, -0.348105, 0, -1.1948, 0.367142, 0.127373, 0.104533)
+mesh = SubResource("BoxMesh_n3y27")
+skeleton = NodePath("")
+
+[node name="ItemSpawners" type="Node3D" parent="."]
+
+[node name="Right" type="Marker3D" parent="ItemSpawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, 1.8, 0)
+
+[node name="Left" type="Marker3D" parent="ItemSpawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6, 1.8, 0)
+
+[node name="Forward" type="Marker3D" parent="ItemSpawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19209e-07, 1.8, -2.6)
+
+[node name="ConveyorCheckers" type="Node3D" parent="."]
+
+[node name="OutputRight" type="Area3D" parent="ConveyorCheckers"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 2, 0)
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ConveyorCheckers/OutputRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.25)
+shape = SubResource("BoxShape3D_i0ko4")
+
+[node name="OutputLeft" type="Area3D" parent="ConveyorCheckers"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.7, 2, 0)
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ConveyorCheckers/OutputLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.25)
+shape = SubResource("BoxShape3D_i0ko4")
+
+[node name="OutputForward" type="Area3D" parent="ConveyorCheckers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96046e-08, 2, -2.6)
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ConveyorCheckers/OutputForward"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.25)
+shape = SubResource("BoxShape3D_i0ko4")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="Input" to="." method="_on_input_area_entered"]
+[connection signal="area_entered" from="ConveyorCheckers/OutputRight" to="." method="_on_output_right_area_entered"]
+[connection signal="area_entered" from="ConveyorCheckers/OutputLeft" to="." method="_on_output_left_area_entered"]
+[connection signal="area_entered" from="ConveyorCheckers/OutputForward" to="." method="_on_output_forward_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

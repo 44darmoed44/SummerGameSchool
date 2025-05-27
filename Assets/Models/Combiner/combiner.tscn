@@ -1,4 +1,6 @@
-[gd_scene load_steps=20 format=4 uid="uid://6i5cb2gs021w"]
+[gd_scene load_steps=22 format=4 uid="uid://6i5cb2gs021w"]
+
+[ext_resource type="Script" uid="uid://dnjd5cbc8jrk3" path="res://Script/combiner.gd" id="1_3jltw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jarlt"]
 resource_name = "Material.006"
@@ -239,7 +241,6 @@ shadow_mesh = SubResource("ArrayMesh_u2krr")
 [sub_resource type="Animation" id="Animation_ov0ak"]
 resource_name = "work"
 length = 7.91667
-loop_mode = 1
 tracks/0/type = "position_3d"
 tracks/0/imported = true
 tracks/0/enabled = true
@@ -273,8 +274,12 @@ size = Vector3(5.58691, 7.07385, 9.93945)
 [sub_resource type="BoxShape3D" id="BoxShape3D_3jltw"]
 size = Vector3(5.75171, 7.28906, 10.5262)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_iycdk"]
+size = Vector3(4.24609, 5.4624, 7.8772)
+
 [node name="Combiner" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56823, 0)
+script = ExtResource("1_3jltw")
 
 [node name="combiner" type="MeshInstance3D" parent="."]
 transform = Transform3D(3.04, 0, 0, 0, 0.6, 0, 0, 0, 4.9, 0, 0, 0)
@@ -299,7 +304,6 @@ skeleton = NodePath("")
 libraries = {
 &"": SubResource("AnimationLibrary_ffjuj")
 }
-autoplay = "work"
 
 [node name="building" type="StaticBody3D" parent="."]
 collision_mask = 3
@@ -313,3 +317,15 @@ shape = SubResource("BoxShape3D_l7yaa")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05566, 0.0694658)
 shape = SubResource("BoxShape3D_3jltw")
+
+[node name="Input" type="Area3D" parent="."]
+collision_mask = 5
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Input"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.49878, 0)
+shape = SubResource("BoxShape3D_iycdk")
+debug_color = Color(0.899113, 1, 0.525555, 1)
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="area_entered" from="Input" to="." method="_on_input_area_entered"]

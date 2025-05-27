@@ -6,8 +6,8 @@ func _ready():
 
 
 func enable_monitoring():
-	$item.monitorable = true
-	$item.monitoring = true
+	$item.set_deferred("monitorable", true)
+	$item.set_deferred("monitoring", true)
 
 
 func disable_monitoring():

@@ -52,17 +52,11 @@ func _input(event):
 				_:
 					return
 			build = building_packed.instantiate()
-			build.set_script(load("res://Script/build_viewer.gd"))
 			
-			if build.name == "Drill": 
-				build.set_script(load("res://Script/drill.gd"))
 			if build.name == "Manipulator":
-				build.set_script(load("res://Script/manipulator.gd"))
 				build.items_node = $"../Items"
-			if build.name == "Box":
-				build.set_script(load("res://Script/box.gd"))
-			if build.name == "Conveyor":
-				build.set_script(load("res://Script/conveyor.gd"))
+			if build.name == "Splitter":
+				build.items_node = $"../Items"
 			
 			building_placer.add_child(build)
 			is_building = true

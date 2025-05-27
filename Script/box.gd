@@ -69,7 +69,6 @@ func add_item(item):
 	storage.append(item)
 
 
-
 func _on_area_3d_area_entered(area):
 	if area.name == "item" and is_collecting:
 		var item = area.get_parent().duplicate()

@@ -249,7 +249,7 @@ shape = SubResource("BoxShape3D_uw27x")
 [node name="Marker3D" type="Marker3D" parent="."]
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.025
+wait_time = 0.05
 autostart = true
 
 [node name="ConveyorItems" type="Node3D" parent="."]

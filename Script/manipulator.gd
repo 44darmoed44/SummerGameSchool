@@ -4,6 +4,7 @@ var is_working_with_storage := false
 var is_grabbing_item := true
 var storage_working: Node3D
 var items_node: Node3D
+var items_array: Array[Node3D]
 @onready var marker := $Armature/Skeleton3D/Marker3D
 @onready var animator := $AnimationPlayer
 @onready var timer := $Timer
@@ -70,21 +71,41 @@ func place_object():
 #endregion
 
 
+func take_item(item):
+	if !item.is_inside_tree():
+		marker.add_child(item)
+		item.scale = Vector3(1, 1, 1)
+	else:
+		item.reparent(marker)
+	item.position = Vector3(0, 0, 0)
+	item.disable_monitoring()
+	animator.play("transit")
+	timer.stop()
+	is_grabbing_item = false
+
+
 func _process(delta):
 	if is_working_with_storage and is_grabbing_item:
 		if storage_working.storage.size() > 0:
 			var item = storage_working.storage[0].duplicate()
-			marker.add_child(item)
+			take_item(item)
 			storage_working.remove_item(storage_working.storage[0])
-			item.global_position = marker.global_position
-			item.scale = Vector3(1, 1, 1)
-			animator.play("transit")
-			timer.stop()
-			is_grabbing_item = false
+	if items_array.size() > 0 and is_grabbing_item:
+		var item
+		for el in items_array:
+			if el != null: 
+				item = el
+				break
+		if item == null: 
+			items_array.clear()
+			return
+		items_array.erase(item)
+		take_item(item)
 
 
 func _on_timer_timeout():
 	animator.play("idle")
+
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "idle":
@@ -105,20 +126,24 @@ func _on_animation_player_animation_finished(anim_name):
 
 
 func _on_work_space_area_entered(area):
-	var work_building = area.get_parent()
-	if work_building.name in ["Drill", "Box"]:
-		storage_working = work_building
-		is_working_with_storage = true
-	if area.name == "item":
-		var item = area.get_parent()
-		item.reparent(marker)
-		item.disable_monitoring()
-		item.position = Vector3(0, 0, 0)
-		animator.play("transit")
-		timer.stop()
-		is_grabbing_item = false
+	match area.name:
+		"Area3D":
+			var work_building = area.get_parent()
+			if work_building.name in ["Drill", "Box", "Combiner"]:
+				storage_working = work_building
+				is_working_with_storage = true
+		"item":
+			var item = area.get_parent()
+			items_array.append(item)
 
 
 func _on_work_space_area_exited(area):
-	is_working_with_storage = false
-	storage_working = null
+	match area.name:
+		"Area3D":
+			var work_building = area.get_parent()
+			if work_building.name in ["Drill", "Box", "Combiner"]:
+				is_working_with_storage = false
+				storage_working = null
+		"item":
+			var item = area.get_parent()
+			items_array.erase(item)

@@ -1,10 +1,10 @@
 extends Node3D
 
-@onready var marker := $Marker3D
+@onready var animator := $AnimationPlayer
+@onready var product_inst = preload("res://Assets/Models/IronGolem/iron_golem.tscn")
 
-var items: Array[Node3D]
-var is_placed := false
-var rotated_angle := 0
+var storage: Array[Node3D]
+var components := 0
 
 #region build_viewer_script
 var elements: Array[MeshInstance3D]
@@ -57,39 +57,26 @@ func change_color():
 
 
 func place_object():
-	is_placed = true
+	$Input.set_deferred("monitoring", true)
 	for el in elements:
 		el.material_override = null
-	rotated_angle = round(rad_to_deg(global_rotation.y))
-	$ItemTransit.set_deferred("monitoring", true)
 #endregion
 
 
-func _on_item_transit_area_entered(area):
-	if area.name == "item" and is_placed:
-		var item = area.get_parent()
-		items.append(item)
-		match rotated_angle:
-			rotated_angle when rotated_angle == 0 or rotated_angle == -180:
-				item.position.x = marker.global_position.x
-			rotated_angle when rotated_angle == 90 or rotated_angle == -90:
-				item.position.z = marker.global_position.z
+func _on_input_area_entered(area):
+	if area.name == "item":
+		area.get_parent().queue_free()
+		components += 1
+		if components % 2 == 0: 
+			animator.play("work")
 
 
-func _on_item_transit_area_exited(area):
-	if area.name == "item" and is_placed:
-		var item = area.get_parent()
-		items.erase(item)
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "work":
+		var product = product_inst.instantiate()
+		storage.append(product)
+		components -= 2
 
 
-func _on_timer_timeout():
-	for item in items:
-		match rotated_angle:
-			0:
-				item.position.z -= 10 * get_process_delta_time()
-			-180:
-				item.position.z += 10 * get_process_delta_time()
-			90:
-				item.position.x -= 10 * get_process_delta_time()
-			-90:
-				item.position.x += 10 * get_process_delta_time()
+func remove_item(item):
+	storage.erase(item)
