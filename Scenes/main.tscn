@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://qet7r2i1b87g"]
+[gd_scene load_steps=22 format=4 uid="uid://qet7r2i1b87g"]
 
 [ext_resource type="Script" uid="uid://ca3ic4hwnvlwx" path="res://Script/camera.gd" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://dpjxk4m2r2f4t" path="res://Script/building_placer.gd" id="2_bo1nx"]
@@ -32,6 +32,188 @@ albedo_color = Color(0.578125, 0.578125, 0.578125, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bo1nx"]
 size = Vector3(1.98462, 0.001, 2.01074)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bo1nx"]
+
+[sub_resource type="Animation" id="Animation_jjvhh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-281, 66)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/DrillBtn:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer/ManipulatorBtn:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VBoxContainer/CombinerBtn:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("VBoxContainer/ConveyorBtn:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("VBoxContainer/SplitterBtn:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("VBoxContainer/BoxBtn:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_8gbba"]
+resource_name = "menu"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.866667, 1),
+"transitions": PackedFloat32Array(0.5, 2, 1),
+"update": 0,
+"values": [Vector2(-289, 66), Vector2(29, 66), Vector2(12, 66)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/DrillBtn:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.933333, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer/ManipulatorBtn:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.933333, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VBoxContainer/CombinerBtn:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.933333, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("VBoxContainer/ConveyorBtn:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.933333, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("VBoxContainer/SplitterBtn:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.933333, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("VBoxContainer/BoxBtn:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.933333, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kry3j"]
+_data = {
+&"RESET": SubResource("Animation_jjvhh"),
+&"menu": SubResource("Animation_8gbba")
+}
 
 [sub_resource type="Image" id="Image_bo1nx"]
 data = {
@@ -113,6 +295,70 @@ shape = SubResource("BoxShape3D_bo1nx")
 transform = Transform3D(1, 0, 0, 0, 0.855174, 0.51834, 0, -0.51834, 0.855174, 0, 11.7564, 19.5044)
 script = ExtResource("1_jjgbg")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera3D"]
+
+[node name="MenuBtn" type="Button" parent="Camera3D/CanvasLayer"]
+offset_left = 13.0
+offset_top = 6.0
+offset_right = 126.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 35
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bo1nx")
+text = "Меню"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera3D/CanvasLayer"]
+offset_left = -281.0
+offset_top = 66.0
+offset_right = -20.0
+offset_bottom = 433.0
+
+[node name="DrillBtn" type="Button" parent="Camera3D/CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bo1nx")
+disabled = true
+text = "Бур"
+
+[node name="ManipulatorBtn" type="Button" parent="Camera3D/CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bo1nx")
+disabled = true
+text = "Манипулятор"
+
+[node name="CombinerBtn" type="Button" parent="Camera3D/CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bo1nx")
+disabled = true
+text = "Сборщик"
+
+[node name="ConveyorBtn" type="Button" parent="Camera3D/CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bo1nx")
+disabled = true
+text = "Конвейер"
+
+[node name="SplitterBtn" type="Button" parent="Camera3D/CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bo1nx")
+disabled = true
+text = "Разветвитель "
+
+[node name="BoxBtn" type="Button" parent="Camera3D/CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bo1nx")
+disabled = true
+text = "Контейнер"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3D/CanvasLayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_kry3j")
+}
+
 [node name="BuildingPlacer" type="Node3D" parent="." node_paths=PackedStringArray("buildings_node", "building_placer")]
 script = ExtResource("2_bo1nx")
 buildings_node = NodePath("../Buildings")
@@ -139,3 +385,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00135803, 0.232582, 0.00052
 shape = SubResource("BoxShape3D_8gbba")
 
 [node name="Items" type="Node3D" parent="."]
+
+[connection signal="pressed" from="Camera3D/CanvasLayer/MenuBtn" to="BuildingPlacer" method="_on_menu_btn_pressed"]
+[connection signal="pressed" from="Camera3D/CanvasLayer/VBoxContainer/DrillBtn" to="BuildingPlacer" method="_on_drill_btn_pressed"]
+[connection signal="pressed" from="Camera3D/CanvasLayer/VBoxContainer/ManipulatorBtn" to="BuildingPlacer" method="_on_manipulator_btn_pressed"]
+[connection signal="pressed" from="Camera3D/CanvasLayer/VBoxContainer/CombinerBtn" to="BuildingPlacer" method="_on_combiner_btn_pressed"]
+[connection signal="pressed" from="Camera3D/CanvasLayer/VBoxContainer/ConveyorBtn" to="BuildingPlacer" method="_on_conveyor_btn_pressed"]
+[connection signal="pressed" from="Camera3D/CanvasLayer/VBoxContainer/SplitterBtn" to="BuildingPlacer" method="_on_splitter_btn_pressed"]
+[connection signal="pressed" from="Camera3D/CanvasLayer/VBoxContainer/BoxBtn" to="BuildingPlacer" method="_on_box_btn_pressed"]

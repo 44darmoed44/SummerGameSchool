@@ -32,34 +32,34 @@ func _input(event):
 			var build = building_placer.get_children()[0]
 			build.rotate_y(deg_to_rad(90))
 			
-	if event is InputEventKey:
-		if !is_building:
-			var building_packed: PackedScene
-			var build: Node3D
-			match event.keycode:
-				KEY_1:
-					building_packed = load("res://Assets/Models/Conveyor/conveyor.tscn")
-				KEY_2:
-					building_packed = load("res://Assets/Models/Combiner/combiner.tscn")
-				KEY_3:
-					building_packed = load("res://Assets/Models/Box/box.tscn")
-				KEY_4:
-					building_packed = load("res://Assets/Models/Drill/drill.tscn")
-				KEY_5:
-					building_packed = load("res://Assets/Models/Manipulator/manipulator.tscn")
-				KEY_6:
-					building_packed = load("res://Assets/Models/Splitter/splitter.tscn")
-				_:
-					return
-			build = building_packed.instantiate()
-			
-			if build.name == "Manipulator":
-				build.items_node = $"../Items"
-			if build.name == "Splitter":
-				build.items_node = $"../Items"
-			
-			building_placer.add_child(build)
-			is_building = true
+	#if event is InputEventKey:
+		#if !is_building:
+			#var building_packed: PackedScene
+			#var build: Node3D
+			#match event.keycode:
+				#KEY_1:
+					#building_packed = load("res://Assets/Models/Conveyor/conveyor.tscn")
+				#KEY_2:
+					#building_packed = load("res://Assets/Models/Combiner/combiner.tscn")
+				#KEY_3:
+					#building_packed = load("res://Assets/Models/Box/box.tscn")
+				#KEY_4:
+					#building_packed = load("res://Assets/Models/Drill/drill.tscn")
+				#KEY_5:
+					#building_packed = load("res://Assets/Models/Manipulator/manipulator.tscn")
+				#KEY_6:
+					#building_packed = load("res://Assets/Models/Splitter/splitter.tscn")
+				#_:
+					#return
+			#build = building_packed.instantiate()
+			#
+			#if build.name == "Manipulator":
+				#build.items_node = $"../Items"
+			#if build.name == "Splitter":
+				#build.items_node = $"../Items"
+			#
+			#building_placer.add_child(build)
+			#is_building = true
 			
 	if event is InputEventMouseButton:
 		if is_building:
@@ -79,7 +79,6 @@ func _input(event):
 			if event.button_index == MOUSE_BUTTON_RIGHT and !raycasted_result.is_empty():
 				if raycasted_result["collider"] == null: return
 				raycasted_result["collider"].get_parent().queue_free()
-			
 
 
 #region BuildingPlaycer
@@ -94,4 +93,102 @@ func snap_to_grid(pos: Vector3) -> Vector3:
 	var snapped_x = round(pos.x / grid_size.x) * grid_size.x
 	var snapped_z = round(pos.z / grid_size.y) * grid_size.y
 	return Vector3(snapped_x, pos.y, snapped_z)
+#endregion
+
+
+#region ui
+@onready var animator := $"../Camera3D/CanvasLayer/AnimationPlayer"
+var is_menu_visible = false
+
+
+func _on_menu_btn_pressed():
+	if !is_menu_visible:
+		animator.play("menu")
+	else:
+		animator.play_backwards("menu")
+	is_menu_visible = !is_menu_visible
+
+
+func _on_drill_btn_pressed():
+	if !is_building:
+		var building_packed = load("res://Assets/Models/Drill/drill.tscn")
+		var build = building_packed.instantiate()
+		
+		if build.name == "Manipulator":
+			build.items_node = $"../Items"
+		if build.name == "Splitter":
+			build.items_node = $"../Items"
+		
+		building_placer.add_child(build)
+		is_building = true
+
+
+func _on_manipulator_btn_pressed():
+	if !is_building:
+		var building_packed = load("res://Assets/Models/Manipulator/manipulator.tscn")
+		var build = building_packed.instantiate()
+		
+		if build.name == "Manipulator":
+			build.items_node = $"../Items"
+		if build.name == "Splitter":
+			build.items_node = $"../Items"
+		
+		building_placer.add_child(build)
+		is_building = true
+
+
+func _on_combiner_btn_pressed():
+	if !is_building:
+		var building_packed = load("res://Assets/Models/Combiner/combiner.tscn")
+		var build = building_packed.instantiate()
+		
+		if build.name == "Manipulator":
+			build.items_node = $"../Items"
+		if build.name == "Splitter":
+			build.items_node = $"../Items"
+		
+		building_placer.add_child(build)
+		is_building = true
+
+
+func _on_conveyor_btn_pressed():
+	if !is_building:
+		var building_packed = load("res://Assets/Models/Conveyor/conveyor.tscn")
+		var build = building_packed.instantiate()
+		
+		if build.name == "Manipulator":
+			build.items_node = $"../Items"
+		if build.name == "Splitter":
+			build.items_node = $"../Items"
+		
+		building_placer.add_child(build)
+		is_building = true
+
+
+func _on_splitter_btn_pressed():
+	if !is_building:
+		var building_packed = load("res://Assets/Models/Splitter/splitter.tscn")
+		var build = building_packed.instantiate()
+		
+		if build.name == "Manipulator":
+			build.items_node = $"../Items"
+		if build.name == "Splitter":
+			build.items_node = $"../Items"
+		
+		building_placer.add_child(build)
+		is_building = true
+
+
+func _on_box_btn_pressed():
+	if !is_building:
+		var building_packed = load("res://Assets/Models/Box/box.tscn")
+		var build = building_packed.instantiate()
+		
+		if build.name == "Manipulator":
+			build.items_node = $"../Items"
+		if build.name == "Splitter":
+			build.items_node = $"../Items"
+		
+		building_placer.add_child(build)
+		is_building = true
 #endregion
